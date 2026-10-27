@@ -14,7 +14,7 @@ BuildRequires: python3-base
 %description
 Keypad layouts from Traditional T9, one <locale>.layout per language, plus
 word lists for the locales named in dictionaries.list. The Sailfish keypad
-reads both from %{_datadir}/tt9. A layout is enough for the letters.
+reads both from %{_datadir}/keypad. A layout is enough for the letters.
 Prediction needs the matching sqlite file. dictionaries.list currently
 names English and Finnish.
 
@@ -33,15 +33,15 @@ python3 build-dictionaries.py --output tt9-data --notices tt9-notices \
     --from-list languages.list --dictionaries dictionaries.list
 
 %install
-mkdir -p %{buildroot}%{_datadir}/tt9
-cp -a tt9-data/. %{buildroot}%{_datadir}/tt9/
+mkdir -p %{buildroot}%{_datadir}/keypad
+cp -a tt9-data/. %{buildroot}%{_datadir}/keypad/
 
 # Create filelist
 {
     FILESLIST=${PWD}/files.list
     pushd %{buildroot}
-    find .%{_datadir}/tt9 -type d | sed -e "s/^\./%%dir /g" > $FILESLIST
-    find .%{_datadir}/tt9 -type f | sed -e "s/^\.//g" >> $FILESLIST
+    find .%{_datadir}/keypad -type d | sed -e "s/^\./%%dir /g" > $FILESLIST
+    find .%{_datadir}/keypad -type f | sed -e "s/^\.//g" >> $FILESLIST
     popd
 }
 
